@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block head_title %} Intro | {{block.super}}{% endblock %}
+
+{% block content %}
+<div class="row mx-1">
+  <div class="col-md-9 mx-auto">
+    <h4 class="text-center">{% trans "Схема болезни" %}</h4>
+  <div class="mt-2">
+  <div class="d-flex custom-flex-small">
+      <div class="">
+        <div>
+          Пациент приходит к врачу не с диагнозом, а жалобами. <br> Нам требуется сопоставить их с нашими книжными знаниями и подумать о дальнейшем плане диагностики и лечения.  <br>
+      Однако здесь может таиться засада. <br>Медицинские учебники устроены таким образом, что каждая болезнь существует как абстрация, живущая своей идеальной жизнью. <br>Вспомним, как там обычно представлена инфа о болезни.
+      <p class="">Обычно это последовательность для т.н. горизонтального чтения:
+        <p>
+          <i>
+            Этиология  &#x2192; Эпидемиология  &#x2192; Патогенез  &#x2192; Клиника  &#x2192; Дифф Дз  &#x2192; Профилактика и т.д.
+          </i>
+        </p>
+      </p>
+        </div>
+      </div>
+      <div>
+        <img class="py-2 me-3  border-dark" src="{% static 'images/homepage/pngs/reader-full.png' %}" alt="books">
+
+      </div>
+
+  </div>
+
+    <div>
+      Это необходимый, но недостаточный способ освоения нового материала.
+    </div>
+    <p>
+      Со временем количество прочитанного будет возрастать огромными темпами, а память человеческая к сожалению ограничена. И в стрессовых клинических условиях
+      нам придётся судорожно вспоминать, на что же похожи симптомы конкретного больного.
+
+    </p>
+  </div>
+  <div class="">
+    В какой-то момент специалисты, когнитивные психологи, принялись изучать проблему, как врачу при обучении упорядочить и скомпановать информацию так, чтобы при необходимости быстро найти в памяти "нужный" раздел.
+  </div>
+  <div class="">
+    <p>
+      Так возникли понятия <span class="">схемы болезни</span> (illness script)  и  <span class=""> схемы пациента </span>(patient script)   (Прим. здесь и далее перевод мой)
+    </p>
+  </div>
+  <div class="">
+      <div class="text-center mb-2">
+          <strong>Что это такое схема болезни? </strong>
+      </div>
+  </div>
+  <div class="d-flex justify-content-between custom-flex-small px-2 mb-2">
+    <div>
+      <img class="image-resize250" src="{% static 'images/homepage/pngs/dia-illness600.png' %}" alt="contrast-compaire" >
+    </div>
+    <!-- <div class="d-flex align-content-center justify-content-center">       -->
+    <div class="">
+      <p>
+        <span><strong>Схема болезни</strong></span> это результат переработки наших (книжных) знаний, полученных при горизонтальном чтении.
+      </p>
+      <p>
+        При наработке вами клинического опыта к "схеме болезни" будут добавляться новые черты и полезности.
+      </p>
+      <p>
+        Но пока мы в самом начале пути.
+          Попробуем профильтровать информацию так, чтобы вычленить из неё только то, что относится к четырём разделам: Эпидемиологии, Течению, Типичным клиническим признакам и Патофизиологии (Механизму возникновения )
+
+      </p>
+    </div>
+
+  </div>
+
+  <div>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Эпидемиология
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            Отвечает на вопрос <span class="tools_top to-underline">"Кто стадает от этой болезни?"</span> и включает в себя:
+          <ul>
+            <li class="">Возраст</li>
+            <li class="">Пол</li>
+            <li class="">Факторы риска окружающей среды </li>
+            <ul>
+              <li class="">Условия работы</li>
+              <li class="">Путешествия</li>
+              <li class="">Хобби</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Течение
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <ul class="accordion-body">
+              <ul class="">
+                <strong>К долго больного беспокоят жалобы?</strong>
+                <li>Молниеносное течение (часы) </li>
+                <li>Острое (дни)</li>
+                <li>Подострое (пару недель)</li>
+                <li>Хроническое</li>
+              </ul>
+              <ul class="">
+                <strong>Как они меняются с течением времени?</strong>
+                <li>Постоянные (и усиливающиеся)</li>
+                <li>Интеpмиттирующее течение</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Типичная клиническая презентация
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <strong>Что можно обнаружить характерного в анамезе, физикальном исследовании и результатах лабораторных тестов</strong> ?
+            <div>Здесь важны понятия: <span class="to-underline">"Ключевые признаки"</span>,<span class="to-underline">"Исключающие признаки"</span>  и <span class="to-underline">"Отличительные"</span> (см далее) . </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Патофизиология (Механизм развития)
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordion1">
+          <div class="accordion-body">
+            <strong>Нарушение каких механизмов приводит к данному заболевани?</strong> <br>Инфекционные,(ауто)иммунные, анатомические дефекты и т.д
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end -->
+  <div class="mt-4 text-center mb-3">
+      А теперь пришёл черед ответить на вопрос
+      <div class=" to-underline">
+        <strong>Зачем нам система хранения информации в "схемах болезни"&nbsp;?</strong>
+
+      </div>
+  </div>
+  <div class="">
+    Как уже было выше отмечено, пациент приходит к врачу с жалобами, которые мы часто интуитивно обозначаем собирательным термином или ведущим синдромом. Например: жалобы на головную боль, жалобы на кровохарканье или боли в груди и т.д.
+  </div>
+  <div class="">
+    Теперь, когда наши знания упакованы в "схемы болезни", нам легче их объединить логическими связями на основе основной жалобы пацинета.
+  </div>
+  <div class="">
+    Это уже не разрозненные схемы, а сеть схем, объединённая под один "зонтик" ведущего синдрома. Именно так опытный врач и хранит в памяти информацию.
+  </div>
+  <div class="mt-2 text-center mb-2">
+      <div class="">
+          <strong>Как нам создать логические связи внутри схемы&nbsp;?</strong>
+      </div>
+  </div>
+  <div class="">
+    Для ответа на этот вопрос нам помогут следущие термины:
+    <ul class="">
+      <li class="mt-2"><span class="to-underline">Отличительная черта </span> это дифф диагностическая характеристика, которая есть в наличии у 2х заболеваний, но отсутствует у третьей болезни.
+      </li>
+      <li>
+        <span class="to-underline">Ключевая черта</span>  (Key Feature) это черта, характерная <span class="tools_top">только для данного</span> заболевания. Таких к сожалению не так много, как хотелось бы, но их хорошо бы  знать.
+        </p>
+      </li>
+      <li>
+        <span class=" to-underline">Исключающая</span> (Rejecting Feature) это черта, наличие которой исключает <span class="tools_top"> данное заболевание.</span>
+        <p>Примером этому будет наличие живых сухожильных рефлексов ног при синдроме Гийена-Барре</p>
+      </li>
+    </ul>
+  </div>
+  <div class="">
+    <p>
+       Ниже примеры этого подхода. Их можно представить в виде <u>диаграммы</u> или в виде <u>таблицы</u>.
+
+    </p>
+    <p>
+      Напомню, речь идёт о типичных характеристиках
+    </p>
+  </div>
+
+  <div class="d-md-flex">
+     <div class="">
+      <div class="w-80">
+        <ul class="">
+          <p class="to-underline">Пациент с острой головной болью</p>
+          <p>
+
+            В этом случае мы мысленно вызовем схемы мигрени, менингита и внутричерепного кровоизлияния и объединим их.
+          </p>
+          <li>
+            На пересечении схем, помеченном <strong>&#x2055;</strong>, находится симптом, общий для всех трёх состояний. Например, тошнота или рвота.
+            Он не является дифференциальным
+          </li>
+          <li>
+            Менингит и Внутричерепное кровоизлияние имеют <strong>отличительные черты:</strong> шейную ригидность и/или спутанное сознание (что не наблюдается при мигрени)
+          </li>
+          <li>
+            <strong>Ключевой чертой</strong> менингита будет являться лихорадка
+          </li>
+          <li>
+            <strong>Исключающей чертой</strong> при (бактериальном) менингите является нормальный состав СМЖ
+          </li>
+        </ul>
+      </div>
+      <div class="">
+      </div>
+      </div>
+     <div class="circles-diagram d-flex  justify-content-center flex-column">
+        <img src="{% static 'images/homepage/pngs/three-illness.png' %}" alt="illness-scripts-diagram">
+      </div>
+  </div>
+  <div class="d-md-flex">
+     <div class="">
+
+      <div>
+         <ul>
+          <p class="to-underline">
+            Пациент с гемофтизом (кровохарканьем)
+          </p>
+              <strong>Ключевые черты</strong>
+              <li>
+                <p>Массивное кровохарканье более типично для синдрома Гудпасчера, чем для  гранулематоза с полиангиитом и рака лёгких. Поэтому внесём эту характеристику как Ключевую черту*** в раздел Симптомов </p>
+              </li>
+              <li>
+                <p>Интенсивное курение в анамнезе - ключевая черта для многих форм рака лёгкого, но не является типичной для Гудпасчера или Гранулематоза с полиангиитом. Поэтому внесём эту характеристику в таблицу как Ключевую черту*** в раздел Эпидемиологии</p>
+              </li>
+            </ul>
+            <ul>
+              <strong>Отличительные черты</strong>
+              <li>
+                <p>Выраженность гематурии</p>
+                <p>Выраженная будет характерна для Гудпасчера и грануломатоза, но не для рака лёгких. Поэтому внесём эту характеристику в таблицу как Отличительную черту в раздел dx тестов</p>
+              </li>
+            </ul>
+            <table class="table table-striped overflow-hidden">
+              <thead>
+                <tr>
+                  <th scope="col">Болезнь</th>
+                  <th>Эпид</th>
+                  <th>Симптомы</th>
+                  <th>Dx тесты</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Рак лёгких</td>
+                  <td>Курение***</td>
+                  <td></td>
+                  <td>Гематурии нет</td>
+                </tr>
+                <tr>
+                  <td>Sd Гудпасчера</td>
+                  <td></td>
+                  <td>Кровь(мокрота)***</td>
+                  <td>Гематурия +</td>
+                </tr>
+                <tr>
+                  <td>Грануломатоз с полиангиитом</td>
+                  <td></td>
+                  <td></td>
+                  <td>Гематурия +</td>
+                </tr>
+              </tbody>
+            </table>
+            <div>Заполните эту таблицу дальше. Однако помните, что не нужно заполнять ВСЕ клетки во что бы то ни стало! </div>
+            <div>А также вписывать мелким почерком тонну инфы в одну клетку. </div>
+            <div>Задача состоит в том, чтобы запомнить основные отличия для заболеваний (с кровохарканьем). </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="mt-2 text-center mb-2">
+
+    <div class="to-underline">
+      <span><img src="/static/images/homepage/svgs/plus.svg" alt="minus-sign">&nbsp;Какие преимущества даёт нам сеть схем болезней&nbsp;?
+        </span>
+
+    </div>
+</div>
+<div class="">
+  Мы избавимся от информационного шума в виде полезной, но в данный момент не особенно нужной информации. <br> Мысленное обращение к подобной таблице позволит перейти от горизонтального к <span class="to-underline">вертикальному</span> чтению, основанному на контрасте.
+  <p>
+    Совет: начиная своё обучение, пробуйте упражняться с тремя заболеваниями, имеющими сходные симптомы. Два - будет слишком мало, а более трёх - сложно.
+  </p>
+</div>
+  <div class="mt-4 text-center mb-3">
+    <div class=" to-underline">
+        <span><img src="/static/images/homepage/svgs/minus.svg" alt="minus-sign">&nbsp;Какими недостатками обладает данный подход&nbsp;?</span>
+    </div>
+</div>
+<div class="">
+  При атипичной презентации заболевания мы можем про него и не подумать.
+</div>
+<div class="mt-2">
+  <div class="">
+    А сейчас время перейти к знакомству с динамическими <a href="{% url 'core:problem_present' %}" ><strong>{% trans "методами" %}</strong></a> работы с анамнезом и результатами физикального обследования
+
+   </div>
+ </div>
+ </div>
+</div>
+
+{% endblock %}
+
+

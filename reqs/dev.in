@@ -1,0 +1,30 @@
+pip-tools
+pre-commit
+
+#formatters
+flake8
+isort
+black
+bandit
+
+# debuggers
+django-extensions
+werkzeug
+
+# tests
+pytest-django
+pytest-socket
+freezegun
+django-webtest
+WebTest
+Faker
+factory-boy
+# for ./.env
+pytest-django-dotenv
+# to make pytest faster (flag --cov)
+# needs pytest-xdist
+pytest-cov
+pytest-xdist==3.3.1
+time-machine==2.11.0
+pytest-mock
+django-debug-toolbar

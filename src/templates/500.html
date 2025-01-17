@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n  static %}
+
+{% block content %}
+<main class="container">
+    <div class="">
+        <div>
+            <h1>{% trans "Something went wrong" %}</h1>
+            <p class="">{% trans "We're sorry but a server error has occurred. We've been notified and will look into it as soon as possible." %}</p>
+            <a href="/" class="button-home">{% trans 'Home' %}</a>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

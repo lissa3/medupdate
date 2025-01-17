@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static tree_collections i18n calend %}
+{% block content %}
+
+  <div class="row ms-1 me-1">
+  <aside class="col-md-3 col-sm-12 mb-2">
+    {% show_categs %}
+  </aside>
+  <div class="col-md-6 col-sm-12 mt-2" id="post_list">
+    <div class="text-wrap single_post__title">{{post.title}}</div>
+    <p>{{post.published_at|date:"F d, Y"}}</p>
+    <div class="d-flex flex-wrap">
+      <div class="me-3">
+        <img src="{% static 'images/svgs/categs.svg' %}" alt="roadmap">
+      </div>
+      {% include "components/post_categs.html" with categ_dict=cats_path %}
+    </div>
+    {% if post.top_img %}
+    <img src="{{post.top_img.url}}" class="rounded w-50 img-thumbnail" alt="{{post.title}}">
+    {% endif %}
+    <div class="mt-3 single_post">
+        {{post.content|safe}}
+    </div>
+<!--  -->
+  {% if images %}
+  <h6 class="text-center">Фото коллекция</h6>
+  <div class="d-flex justify-content-center">
+  <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for item in post.pics.all %}
+        {% if forloop.first %}
+          <div class="carousel-item active" data-bs-interval="100000">
+        {% else %}
+          <div class="carousel-item" data-bs-interval="100000">
+        {% endif %}
+          <a href='{{item.bron}}' target="_blank">
+            <h6 class="text-center">{{item.title}}</h6>
+            <img src="{{ item.pic.url }}" class="img-wh450 img-fluid img-thumbnail" alt='{{item.title}}'>
+          </a>
+        </div>
+      {% endfor %}
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden=""></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden=""></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div><!-- end inner -->
+  </div><!-- end carousel -->
+  </div>
+  {% endif %}
+  <!-- end images -->
+  <hr class="mb-3 mt-3">
+    <!-- likes + bmark -->
+  <div class="d-flex justify-content-between">
+      <!-- div with likes -->
+      <div class="d-flex">
+        <div class="me-5 ms-5 d-flex justify-content-center">
+          {% if user.is_authenticated %}
+          <button
+          hx-post="{% url 'posts:track_likes' %}"
+          hx-target="#num-like"
+          hx-vals='{
+              "post_uuid":"{{post.uuid}}",
+              "user_id":"{{user.id}}"
+            }' id="toLike" >
+          <img src="{% static 'images/svgs/heart.svg' %}" alt="like-heart">
+          <span id="num-like">
+            {% if summ_likes %}
+              <span class="ms-1"> {{summ_likes}} </span>
+            {% endif %}
+          </span>
+          </button>
+          {% else %}
+            <button id="toLike" >
+              <img src="{% static 'images/svgs/heart.svg' %}" alt="like-heart">
+              {% if summ_likes %}
+                <span class="ms-1"> {{summ_likes}} </span>
+              {% endif %}
+            </button>
+          {% endif %}
+        </div>
+      </div>
+      <!-- div with bookmarks -->
+      <div class="me-5 d-flex" id="bmarkDiv">
+      {% if user.is_authenticated and display_bmark_button %}
+        {% include "posts/parts/bmark_section.html" %}
+      {% endif %}
+      </div>
+   </div>
+   <hr>
+   <!-- comms form and comments -->
+   <div class="container mt-4 p-1">
+    <!-- set flash msg here -->
+    <div id="jsBox"></div>
+    {% if user.is_authenticated and not user.banned and post.allow_comments %}
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn-success mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#form_toggle" aria-expanded="false" aria-controls="form_toggle">
+            {% trans "Leave comment" %}
+          </button>
+        </div>
+      </div>
+      <!-- class collapse show id bootstrap -->
+      <div class="row collapse" id="form_toggle" >
+        {% include "posts/parts/root_comms_form.html" %}
+      </div>
+    {% endif %}
+    {% if comments %}
+      <div class="row comms">
+        <div class="col-sm-3"></div>
+        <div class="col-md-12 col-sm-6 fs-5">{% trans 'Comments' %} : <span class="number">{{comms_total}}</span></div>
+        <div class="col-sm-3"></div>
+      </div>
+      <div class="row ">
+        <div class="col col-12 ">
+            {% if thread_uuid %}
+            <div class="mb-2"><button class="btn btn-secondary"
+            hx-get="{% url 'comments:all_comms_notifs' post_uuid=post.uuid notif_flag=1 %}"
+            hx-target="#mycomms"
+              >{% trans 'See all comments' %}</button>
+            </div>
+            <div id="comms_list"
+              hx-trigger="load, updateCommList from:body"
+              hx-get="{% url 'comments:select_comms' post_uuid=post.uuid thread_uuid=thread_uuid %}"
+              hx-target="#mycomms">
+              <div id="mycomms" class="comms_bg"></div>
+            </div>
+            {% else %}
+            <div id="comms_list"
+            hx-trigger="load, updateCommList from:body"
+            hx-get="{% url 'comments:all_comms' post_uuid=post.uuid %}"
+            hx-target="#mycomms">
+            <div id="mycomms" class="comms_bg"></div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% else %}
+      <div class="row">
+        <div class="col col-md-12 text-center mt-1 form-help-txt">{% trans 'No comments yet. Please login and be first to comment' %}</div>
+      </div>
+      {% endif %}
+  </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
+    {% show_archive %}
+    {% show_tags %}
+  </div>
+  </div>
+  <hr>
+
+{% endblock%}
+
+{% block js %}
+
+{% endblock %}

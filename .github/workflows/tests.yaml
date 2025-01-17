@@ -1,0 +1,53 @@
+name: Tests Runner
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-22.04
+    env:
+      ALLOWED_HOSTS: "*"
+      DEBUG: "on"
+      SECRET_KEY: "my big secret not seen"
+      EMAIL_HOST: "some-host"
+      EMAIL_HOST_USER: "no-name@gmail.net"
+      EMAIL_HOST_PASSWORD: "some-secret"
+      EMAIL_PORT: "587"
+      EMAIL_BACKEND: "django.core.mail.backends.locmem.EmailBackend"
+      DEFAULT_FILE_STORAGE: "django.core.files.storage.memory.InMemoryStorage"
+      DB_NAME: "rome"
+      DB_USER: "postgres"
+      DB_PSW: "postgres"
+      SENTRY_DSN: "some_dns"
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        options: --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: "reqs/*.txt"
+
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r reqs/req_linux.txt -r reqs/dev.txt
+
+      - name: Test it
+        run: python manage.py test

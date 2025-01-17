@@ -1,0 +1,16 @@
+[flake8]
+ignore = C101,D403,F403,F405,I100,I201,W503,W504,E203,F401
+extend-ignore = E501
+extend-select = B9
+exclude =
+    **/migrations/*,
+    .git,
+    __pycache__,
+    venv
+filename = *.py
+accept-encodings = utf-8
+inline-quotes = double
+max-complexity = 12
+max-linenumber = 500
+max-line-length = 88
+multiline-quotes = double

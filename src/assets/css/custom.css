@@ -1,0 +1,11 @@
+/* for admin templates base.html and top-menu colors*/
+#header, .module caption {
+    background: #593c33;
+}
+div.breadcrumbs {
+    background:#765037;
+}
+
+module h2, .module caption, .inline-group h2 {
+    background: #765037;
+}

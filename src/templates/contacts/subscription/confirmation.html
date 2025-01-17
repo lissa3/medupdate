@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block head_title %} news letter | {{block.super}}{% endblock %}
+{% block content %}
+  <main class="container">
+  <div class="d-flex flex-column justify-content-center">
+    <h3>{% trans "Join my newsletter to learn about medical problems solving." %}</h3>
+    <p>{% trans "Default language is russian." %}
+    {% trans "Please contact me if you can help to translate articles to other languages." %}</p>
+    <div class="d-flex">
+      <button  class="btn btn-success"
+       hx-post="{% url 'contacts:subscribe' %}">
+        {% trans "Subscribe" %}
+      </button>
+    </div>
+  </div>
+</main>
+{% endblock content %}

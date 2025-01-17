@@ -1,0 +1,35 @@
+{% load i18n %}
+<div class="notif_container d-flex flex-column m-2">
+
+   {% if admin_msg %}
+   <div class="small-notif">{{admin_msg.text|safe|linebreaks}}</div>
+    <div class="d-flex justify-content-between">
+      <a href="{% url 'profiles:profile_detail' user.profile.uuid %}"
+         >{% trans 'See details in profile' %}
+      </a>
+      <button hx-post="{% url 'notifications:admin_read' admin_msg.id %}" class="btn btn-danger">Mark as read</button>
+    </div>
+   <hr>
+   {% endif %}
+   {% if top_notifs %}
+   <button class="btn btn-primary mb-2"
+      hx-post="{% url 'notifications:mark_read'%}">
+      {% trans 'Mark all as read' %}
+   </button>
+   <hr>
+      {% for n in top_notifs %}
+      <div class="small-notif ">{{n.text|safe|linebreaks}}</div>
+      <a href="{% url 'posts:get_branch'  slug=n.post.slug thread_uuid=n.parent_comment.uuid%}"
+         >{% trans 'See details' %}
+      </a>
+      <hr>
+      {% endfor %}
+   {% endif%}
+   {% if show_more %}
+   <div>
+      <a href="{% url 'notifications:show_notifs' %}">
+         <button class="btn btn-outline">{% trans 'More notifications' %}</button>
+      </a>
+   </div>
+   {% endif %}
+</div>

@@ -1,0 +1,137 @@
+/* general tools */
+.tool-frame{
+    cursor: pointer;
+}
+/* COMMENT */
+/* child comms form */
+.modal-header{
+    border-bottom-color: #fff;
+    /* display: flex;
+    justify-content: center; */
+}
+.modal-title{
+    font-size: 0.9em;
+    text-align: center;
+}
+.modal-footer {
+    border-top-color:#fff;
+}
+/* render nested comments section */
+.shape-img-comms{
+    width:30px;
+    height: 30px;
+}
+.comms_bg{
+    background-color:#c5c4c3;
+    padding:10px;
+    border-radius: 10px;
+}
+.deleted{
+    background-color:#ecebe6;
+    font-size: 0.7em;
+}
+/* root form comms */
+.form-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:100%;
+}
+.form-main > label{
+    color:black;
+    text-align: center;
+    font-weight: bold;
+}
+.input-main{
+    margin-top: .5rem;
+    padding:.5rem;
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    background:#f9f4eb;
+    width:100%;
+}
+
+/* define indentation od node with depth <=3 */
+/* list and list_item: not in html */
+.list{
+    margin-left:30px;
+}
+/* bg for whole comment thread  */
+.kind{
+    background-color: #adb5bd66;
+}
+.date-comment{
+    background-color:#e9f0ea;
+    font-size:0.8em;
+}
+/* bmarks */
+#bookmark{
+    display: flex;
+    align-items: center;
+}
+/* reply buttons on modile's bg darker and font smaller */
+@media all and (max-width:900px){
+    .btn-primary {
+        font-size:0.6em;
+        background-color: #2f3335d4;
+        border-color:#2f3335d4;
+        padding:3px;
+    }
+    .btn-outline {
+        font-size:0.6em;
+        padding:3px;
+    }
+    .card-text{
+        font-size:0.7rem;
+    }
+    .date-comment{
+        font-size:0.7em;
+    }
+    .writer{
+        font-size: 0.7rem;
+    }
+    .tool-frame img{
+        width:15px;
+
+    }
+    .number{
+        font-size: 1em;
+        margin-top:1rem;
+    }
+}
+
+/* like button */
+#toLike {
+    color: #833535;
+    font-size: 1em;
+    font-family: sans-serif;
+    background-color: transparent;
+    border: .1em solid;
+    border-radius: 1em;
+    padding: 0.25em 0.5em;
+    line-height: 1.2em;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,transform .15s ease-in-out;
+    outline: 0;
+    margin: 1em 0;
+  }
+#toLike:hover {
+      transform: scale(.95);
+      border-color: red
+  }
+
+@media (max-width: 575.98px) {
+ #toLike {
+    display: flex;
+    font-size: 0.7rem;
+    align-items: center;
+  }
+  #toBookMark{
+    padding:3px;
+    display: flex;
+    align-items: center;
+  }
+}
+/* end like button */

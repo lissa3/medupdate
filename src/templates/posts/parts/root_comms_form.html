@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="col-md-12">
+    <form action="{% url 'posts:post_detail' post.slug %}" id="top_form" method="POST" class="form-main">
+      {% csrf_token %}
+      {% for field in form.visible_fields %}
+        <p>{{ field.errors }}</p>
+          {{ field }}
+        <p class="text-center">{{ field.help_text }}</p>
+      {% endfor %}
+      {% for error in field.errors %}
+      <div class="errorlist">{{ error }}</div>
+      {% endfor %}
+      <button class="btn btn-primary" type="submit">{% trans "Comment" %}</button>
+    </form>
+  </div>

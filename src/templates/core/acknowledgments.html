@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block content %}
+<div class="row d-flex justify-content-center">
+  <div class="mt-3 col col-md-8 col-sm-12 px-3">
+    <div>
+      <p>
+        I created this site myself using python and javascript.
+      </p>
+      <p>
+        If it is a success, I have to thank my  <a href="https://github.com/joeribekker" class="" target="_blank">
+            <strong>former colleagues</strong>
+            <img src="{% static 'images/workers.png' %}" alt="work-colleages">
+        </a>who encouraged me to write a clean code.
+      </p>
+
+      <p>
+        If some parts of the site don't  work, I dedicate it to them as well for not supervising me enough .
+      </p>
+        </div>
+
+    <div class="mt-4 d-flex justify-content-between">
+      <div class="">
+        <img src="{% static 'images/hospital.png' %}" alt="hospital">
+      </div>
+      <div class="ms-4">
+        <p>
+          Thanks to doctors, medical instructors, tutors and just great people who share their knowledge with others:
+        </p>
+      </div>
+    </div>
+    <div>
+      <ul>
+        <li>
+          <a href="https://youtu.be/_FwQ7FkGouM?si=EZpDI_xYrPSGzgx9" target="_blank"><strong>
+            Catherine Lucey (UCSF School of Medicine)
+          </strong></a></li>
+        <li>
+          <a href="https://clinicalproblemsolving.com/team/" target="_blank"><strong>The clinical problem solvers</strong></a>
+        </li>
+        <li>
+          <a href=" https://twitter.com/thecurbsiders" target="_blank"><strong>
+            The Curbsiders
+          </strong></a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      Special thanks to my husband for years of remaining calm.
+    </div>
+  </div>
+</div>
+{% endblock %}
+

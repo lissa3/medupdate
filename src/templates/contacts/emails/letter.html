@@ -1,0 +1,32 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head><style></style></head>
+<body>
+  <div class="container">
+    <h3 class="note red">Greetings from MedSandbox</h3>
+    <p>Here is some fresh content on our site</p>
+    {% if letter %}
+    <div>
+      <p>{{letter.title}}</p>
+     <img src="{{domain}}{% static 'images/svgs/logo.svg'%}" style="width:52px;height:52px;" alt="logo">
+    </div>
+      <p>{{ letter.text|linebreaksbr }}</p>
+      {% if posts %}
+        <p>Please follow the link to read more:
+          {% for post in posts %}
+            <a href="{{domain}}{% url 'posts:post_detail' post.slug %}">{{post.title}}</a>
+        </p>
+          {% endfor%}
+        {% endif %}
+      {% endif %}
+      <p>Best regards,</p>
+      <p><strong>Medsandbox Team</strong></p>
+      <hr>
+    <a href="{{domain}}{% url 'contacts:end_news' uuid=uuid %}">
+      Unsubscribe from news letters
+    </a>
+    </div>
+  </body>
+</html>
+

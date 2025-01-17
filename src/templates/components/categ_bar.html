@@ -1,0 +1,31 @@
+{% load static i18n tree_collections cache %}
+
+<div class="drop-top" >
+    <button class="btn btn-secondary hide" id="show-cats" data-dropdown-but>
+      {% trans 'Categories' %}</button>
+    <ul class="root-cats mt-3" data-dropdown>
+  <!-- { cache 1000 categs %} -->
+
+    <!-- 300 sec -->
+    {% recursetree categs %}
+        <li class="node-name categ_item" data-li>
+          {% if node.is_leaf %}
+          <a hx-get="{% url 'posts:cat_search' node.slug %}" hx-target="#post_list" class="node-link" >{{node.name}} {{node.num}}</a>
+          {% else %}
+          <!-- 2 siblings: a tag and ul children -->
+          <a hx-get="{% url 'posts:cat_search' node.slug %}" hx-target="#post_list" class="node-link to-toggle" data-dropdown-link>{{node.name}} &#x25B8; {{node.num}}</a>
+          <ul class="children">
+              {{ children }}
+            </ul>
+          {% endif %}
+        </li>
+      {% endrecursetree %}
+    <!-- { endcache %} -->
+ </ul>
+</div>
+
+
+
+
+
+

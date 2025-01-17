@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static tree_collections calend i18n %}
+{% block content %}
+
+<div class="row">
+
+  <div class="col-md-12 col-sm-12 d-flex text-center flex-column mb-3">
+    <h1>Welcome to devs dashboard. </h1>
+    <h4>Please choose an action from the menu </h4>
+    <div class="col-md-12 col-sm-12">
+      <div class="menu d-flex justify-content-around ">
+        {% if to_admin_link %}
+          <div>
+            <a href="{{to_admin_link}}" id="dev-to-admin">
+                <button class="btn btn-outline">Go to admin page</button>
+            </a>
+          </div>
+        {% endif %}
+        {% if user.is_superuser %}
+          <div>
+            <a href="{% url 'devs:celery-letter' %}">
+                <button class="btn btn-danger">Send Celery letter</button>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-sm-12">
+    <div class="menu d-flex justify-content-around flex-wrap">
+        <div class="menu_item mt-2">
+          <a href="{% url 'devs:creation' %}">
+            <button class="btn btn-secondary">Create</button>
+          </a>
+        </div>
+        <div class="menu_item mt-2">
+            <a href="{% url 'devs:selection' action='draft' %}">
+                <button class="btn btn-primary">Show drafts</button>
+            </a>
+        </div>
+        <div class="menu_item mt-2">
+            <a href="{% url 'devs:selection' action='review' %}"><button class="btn btn-success">Show reviews</button></a></div>
+        <div class="menu_item mt-2">
+            <a href="{% url 'devs:selection' action='soft_delete' %}">
+                <button class="btn btn-danger">Show soft-deleted</button>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock%}

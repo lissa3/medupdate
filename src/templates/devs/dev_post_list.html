@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static  i18n %}
+{% block content %}
+<div class="row d-flex justify-content-center dmb-lg-4 mb-sm-1 pe-sm-0">
+  <div class="col col-md-8 mb-2 ">
+    <div class="d-flex justify-content-center">
+      {% include "components/crumbs.html" %}
+    </div>
+  </div>
+</div>
+<div class="row container ">
+  <h3 class="text-center red">{{header}}</h3>
+  <div class="col-md-12 col-sm-12 d-flex flex-wrap">
+    {% if posts %}
+      {% for post in posts%}
+        {% include "devs/post_card.html" %}
+      {% endfor %}
+  </div>
+  <div class="col-md-12 col-sm-12 d-flex justify-content-center">
+    {% include "posts/parts/pagination.html" %}
+  </div>
+  {% else %}
+  <div id="not-found">
+        {% trans "Sorry. Nothing found" %}
+  </div>
+    {% include "posts/parts/search_errors.html" %}
+    {% endif %}
+</div>
+{% endblock%}

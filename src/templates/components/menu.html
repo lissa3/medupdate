@@ -1,0 +1,132 @@
+{% load widget_tweaks static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom p-3">
+    <div class="container-fluid align-items-md-baseline">
+      <a class="navbar-brand logo " href="/">
+        <img src="{% static 'images/svgs/logo.svg'%}" style="width:52px;height:52px;" alt="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse fs-5" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'posts:post_list'%}">{% trans 'Posts' %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacts:feedback' %}">{% trans 'Contact' %}
+            </a>
+          </li>
+
+          {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'devs:dev_page' %}">
+                {% trans 'Dashboard' %}
+              </a>
+            </li>
+            {% endif %}
+            <!-- May be here small img? -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{user.username}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" id="subLink" href="{% url 'profiles:profile_detail' uuid=user.profile.uuid %}">{% trans "Profile" %}
+                <span class="ms-3">
+                  <img src="{% static 'images/profile.png' %}" alt="profile-icon">
+
+                </span>
+              </a>
+              </li>
+              {% if has_bookmarks %}
+              <li >
+                <li><hr class="dropdown-divider"></li>
+                <a class="dropdown-item" href="{% url 'posts:bmark_collection' %}">
+                    {% trans 'Bookmarks' %}
+                <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="bookmark heart fill" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-bookmark-heart-fill b-icon bi"><g><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></g></svg>
+                </a>
+              </li>
+
+              {% endif %}
+            {% if not news_negative %}
+              <li><hr class="dropdown-divider"></li>
+              <li class="nav-item">
+              <a class="dropdown-item" href="{% url 'contacts:subscribe' %}" >
+                  {% trans 'Subscribe to news' %}
+              </a>
+            </li>
+            {% else %}
+            <li><hr class="dropdown-divider"></li>
+            <li class="nav-item">
+            <a class="dropdown-item" href="{% url 'contacts:end_news' user.profile.uuid %}" >{% trans 'Usubscribe to news' %}
+            </a>
+          </li>
+            {% endif %}
+
+            </ul>
+          </li>
+          {% if notifs %}
+            <li class="nav-item dropdown d-flex">
+              <a href="#" class="nav-link me-1">
+                <img src="{% static 'images/svgs/bell.svg' %}" style="width:26px;height:26px;"  alt="notifications">
+              </a>
+              <div class="note-badge">
+              <a class="nav-link dropdown-toggle" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false"
+              id="notifs"
+              hx-get="{% url 'notifications:top_notifics' %}"
+              hx-target="#notis">
+                <span class="badge rounded-pill bg-danger fs-6 px-2">{{notifs}}</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="notifs" id="notis"></div>
+              </div>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">
+                {% trans 'Log out' %}
+            </a>
+          </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">{% trans 'Sign Up' %}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">
+                {% trans 'Log In' %}
+              </a>
+            </li>
+
+        {% endif %}
+        <li class="nav-item">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language" class="lang-drop">
+                {% for language in languages %}
+                <option class="lang-drop__item" value="{{ language.code }}"
+                  {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.code }}
+                  </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go" class="but-go">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+</header>
+{% block js %}
+
+{% endblock js%}
+
+
+

@@ -1,0 +1,11 @@
+{% load i18n %}
+<form hx-post="{% url 'comments:handle_delete' post_uuid comm_id %}" class="modal-content">
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">{% trans 'Do you really want to delete your comment?' %}</h5>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+      <button type="submit" class="btn btn-danger">{% trans 'Confirm' %}</button>
+    </div>
+</form>

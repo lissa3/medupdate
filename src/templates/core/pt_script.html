@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block head_title %} Intro | {{block.super}}{% endblock %}
+
+{% block content %}
+<div class="row mx-1 tool-one">
+  <div class="col-md-9 mx-auto">
+    <h4 class="text-center">{% trans "Схема пациента" %}</h4>
+
+    <div>
+        <div>
+            Ранее мы рассмотрели построение <a href="{% url 'core:illness_script' %}" class="general"><strong> {% trans "схемы болезни" %}</strong></a>, которая представляет попытку структурировать и хранить наши знания о болезни в виде четырёх разделов. Мы также рассмотрели различные <a href="{% url 'core:problem_present' %}"  class="general"><strong>{% trans 'методы' %}</strong></a>, помогающие нам более эффективно организовать поиск информации . Всё это позволит нам приступить к созданию схемы конкретного больного и в конечном итоге построить дифф диагноз.
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mb-2 custom-flex-small">
+        <div class="d-flex align-items-center justify-content-center">
+            <img class="img-300 img-svg" src="{% static 'images/homepage/pngs/dia-pt600.png' %}" alt="schema" >
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <div><span><strong>VS</strong></span></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <img class="img-300 img-svg" src="{% static 'images/homepage/pngs/dia-illness600.png' %}" alt="schema" >
+        </div>
+
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            Схема больного очень похожа на схему заболевания.
+        </p>
+        <p>
+            Различие только в том, раздел "Сопутствующие заболевания"  как характеристика конкретного больного, выделен в отдельный раздел и не относится к основной жалобе .
+            А то, <strong><u>что</u></strong> относится, будет входить в раздел Эпидемиологии как фактор(ы) риска.
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            Что включить в раздел <span class="epid">Эпидемиологии</span> схемы больного&nbsp;?
+        </p>
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/plus.svg'%}" alt="plus-sign">
+             привычки, контакт с токсинами, употребление (лекарственных) препаратов  и т.д.
+            </span>
+        </p>
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/plus.svg'%}" alt="plus-sign">предрасполагающие факторы.</span>
+        </p>
+        <p>
+           <span><img src="{% static 'images/homepage/svgs/minus.svg'%}" alt="minus-sign">
+                социальный статус, расу и ожирение(если они не релевантны).</span>
+        </p>
+        <p>
+            Вам решать, что из анамнеза отнести в Эпидемиологию, а что отселить в раздел Сопутствующих заболеваний. Это не означает, что данные из этого  раздела будут благополучно забыты. Мы просто сортируем информацию в порядке значимости.
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            <strong>Пример:</strong> пациент с болью за грудной
+        </p>
+        <p>
+          В Эпидемиологию отнесём: гипертонию, дислипопротеинемию
+        </p>
+        <p>
+          В раздел Сопутствующих заболеваний: грибковое поражение стоп
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            Что включить в раздел <span class="time-course">Течение</span>&nbsp;?
+        </p>
+        <p>
+           Отличается мало от аналога в схеме заболевания, однако требуется как можно более детальнее описать изменение жалобы больного по отношению ко времени (постоянство, интенсивность, продолжительность, флюктуацию и т.д )
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            Что  НЕ включать в раздел <span class="syndrome">Типичные клинические черты</span>&nbsp;?
+        </p>
+
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/minus.svg'%}" alt="minus-sign">
+                Не помещайте сюда инфу, упомянутую уже в Эпидемиологии. </span>
+
+        </p>
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/minus.svg'%}" alt="minus-sign">
+                неспецифические признаки и симптомы (усталость, недомогание,  некоторое повышение ЧСС при повышении Т-ры или боли)    </span>
+
+        </p>
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/minus.svg'%}" alt="minus">
+                Предшествующие заболевания не относящиеся к жалобе      </span>
+
+        </p>
+        <p>
+            <span><img src="{% static 'images/homepage/svgs/minus.svg'%}" alt="minus">
+                Диагноз, поставленный другими врачами, обследовавшими пациента с этими же жалобами.     </span>
+
+        </p>
+
+        <p>
+            Однако вышеперечисленное не отлито в граните. Необходимо критически относиться  указанным советам.
+        </p>
+        <p>
+        Например, более точное описание характера "усталости", если она является основной жалобой, может существенно обогатить схему.
+        </p>
+    </div>
+
+
+    <div class="mb-3">
+        <p class="text-center to-underline">
+            Следующий шаг: проработка списка жалоб
+        </p>
+        <p>
+         Изначальный список жалоб - это простое перечисление того, что рассказал и на что пожаловался пациент. Наша задача объединить по возможности эти симптомы в группы, путём фильтрации и группировки списка жалоб, переведённых на язык медицинских терминов. Таким образом мы получим
+          краткое, информационно насыщенное представление о больном.
+        </p>
+        <div class="text-center">
+            <span><img src="{% static 'images/homepage/svgs/compressed-list.svg'%}" alt="compressed-list-complaints" class="img80">
+               </span>
+
+        </div>
+        <p class="text-center to-underline">
+            <strong>Пример</strong>
+        </p>
+        <p>
+        tumor, dolor, color  нескольких суставов и нарушение функции &#x2192; олигоартрит
+        </p>
+        <p>
+         отёк сухожилия(ий) &#x2192; энтезопатия (каков термин!)
+        </p>
+        <p>
+         сыпь &#x2192; отдельные геморрагические высыпания
+        </p>
+    </div>
+    <p class="text-center to-underline">
+        Следующий шаг: поместим это всё в схему пациента
+    </p>
+    <div class="mb-3">
+        <p class="text-center">
+            <strong>Пример   N 1</strong>
+        </p>
+        <p>
+            <span class="epid">Эпид</span>&nbsp; молодая секс активная <img src="{% static 'images/homepage/svgs/female.svg' %}" alt="female">, недавно побывавшая в лесу в сезон клещей
+        </p>
+        <p>
+           <span class="time-course">Течение</span>&nbsp;  с жалобами на остро возникшую и усиливающуюся
+        </p>
+        <p>
+        <span class="syndrome">Синдромы</span>&nbsp; олигоартритую боль с энтезопатией , сопроваждающююся лихорадкой и отдельными геморрагическими высыпаниями
+        </p>
+        <p>
+           <span class="pmh">Сопутствующие заболевания</span>&nbsp;  астма в анамнезе
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center">
+            <strong>Пример  N 2</strong>
+        </p>
+        <p>
+            <span  class="epid">Эпид</span>&nbsp; 50 летняя <img src="{% static 'images/homepage/svgs/female.svg' %}" alt="female"> с курением в анамнезе
+
+        </p>
+        <p>
+            <span class="time-course">Течение</span>&nbsp; с  подостро возникшими и усиливающимися
+        </p>
+        <p>
+        <span class="syndrome">Синдромы</span>&nbsp; симптомами диспноэ и кашлем с признаками плеврального выпота, патологической региональной аденопатией и патологической потерей веса.
+        </p>
+        <p>
+          <span class="pmh">Сопутствующие заболевания </span>&nbsp; гипертензия
+        </p>
+    </div>
+    <div class="mb-3">
+        <p class="text-center to-underline">
+            Заметили ли вы, чем ещё поможет схема пациента?
+        </p>
+        <p>
+           Конечно. Это то, что от вас будут ожидать на утренней конференции или обходе: описания пациента
+           <a href="https://meded.ucsd.edu/clinicalmed/oral.html" target="_blank">
+            <strong>ОДНИМ</strong>
+        </a> предложением!
+        </p>
+        <p>
+           И главное: теперь мы можем провести контрастное сравнение схемы пациента с самой подходящей сетью из схем болезней, хранящимися в нашей памяти,  и составить  наконец <strong>дифф дз</strong>
+        </p>
+        <p>
+           p.s Продолжение следует.
+        </p>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

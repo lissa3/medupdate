@@ -1,0 +1,11 @@
+ {% comment %} include "account/email/email_confirmation_message.txt" %} {% endcomment %}
+Hello!
+
+Thanks for signing up with Med Sandbox!
+
+To confirm your account, please follow this link to complete sign up: {{ activate_url }}
+
+I hope you have a great time using our site.
+
+Regards,
+HelpDesk

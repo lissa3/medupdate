@@ -1,0 +1,24 @@
+# Editor
+.vscode
+# static
+
+# local env files
+prod.py
+*.sqlite3
+*.pyc
+*__pycache__
+*.env
+.coverage
+venv
+prod.py
+*pytest_cache
+*.log
+docs
+sqmemory
+dump
+media
+static
+*config.json
+deploy.py
+reqs/req.in
+reqs/req.txt

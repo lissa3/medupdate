@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 d-flex flex-wrap" id="post_list">
+    {% if posts %}
+      {% for post in posts%}
+        {% include "posts/parts/post_card.html" %}
+      {% endfor %}
+   </div>
+      {% include "posts/parts/pagination.html" %}
+   {% else %}
+   <div class="col-md-12 col-sm-12 text-center ">
+    <h5>{% trans 'No posts in bookmarks' %}</h5>
+   </div>
+
+   {% endif %}
+</div>
+
+{% endblock%}

@@ -1,0 +1,29 @@
+{% load static i18n %}
+<!-- short represention -->
+<div class="d-flex flex-column">
+    <div class="single_post__title mb-2 me-2">
+      <a href="{% url 'posts:post_detail' post.slug %}">{{post.title}}</a>
+      </div>
+    <p>{{post.created_at|date:"F d, Y"}}</p>
+    <p>
+     {% trans "category" %}:  <span class="streep">{{post.categ.name}}</span>
+    </p>
+  {% if post.top_img %}
+  <div class="single_post">
+    <div class="single_post__content">
+      <img src="{{post.top_img.url}}" class="img-thumbnail  w-50 float-end ms-3 zoo" alt="{{post.title}}">
+      {{post.content|safe|truncatewords_html:30}}
+    </div>
+  </div>
+  {% else %}
+  <div class="single_post">
+    <p class="single_post__content">
+      {{post.content|safe|truncatewords_html:30}}
+    </p>
+  </div>
+  {% endif %}
+  <div class="single_post__link d-flex">
+      <a href="{% url 'posts:post_detail' post.slug %}">{% trans 'Read more' %}</a>
+  </div>
+</div>
+<hr>

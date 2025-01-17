@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<main class="container">
+    <div class="">
+        <div>
+            <h1>Something went wrong with your request</h1><br>
+            <h5>Check if js is active</h5>
+            <a href="/" class="button-home">{% trans 'Home' %}</a>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

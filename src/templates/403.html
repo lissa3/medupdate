@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block head_title %}Page not found{% endblock %}
+
+{% block content %}
+<main class="container">
+    <div class="">
+        <div>
+            <h1>{% trans 'You do not have enough permission to see this page' %}</h1><br>
+            <a class="general" href="/" class="button-home">{% trans 'Home' %}</a>
+        </div>
+    </div>
+</main>
+{% endblock content %}

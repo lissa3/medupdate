@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <!-- next after the form -->
+    <h1>{% trans "Verify Your E-mail Address" %}</h1>
+
+    <p class="fs-4">
+        {% blocktrans %}
+        We have sent you an email so we can confirm your address
+        to complete your sign up.
+        Please follow the link in your email.
+    </p>
+    <p class="fs-4">
+        Once you do that,you’ll be on your way to starting with Med-Sandbox!
+        If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.
+    </p>
+    <p class="fs-4">
+            Regards,<br>
+            HelpDesk
+    </p>
+    <p class="fs-4">
+            P.S. If you can’t find the confirmation email
+            after a few minutes,
+            be sure to check your spam folder
+            as some email clients will mark your confirmation as spam.
+    </p>
+        {% endblocktrans %}
+    </p>
+</div>
+{% endblock %}

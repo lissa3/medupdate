@@ -1,0 +1,69 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a class="general" href="{{ login_url }}">Log In</a>.{% endblocktrans %}</p>
+<!-- form non field errors -->
+{% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+      <div class="errorlist">
+          <strong>{{ error|escape }}</strong>
+      </div>
+  {% endfor %}
+{% endif %}
+<!-- end form non field errors  -->
+
+<!-- form  -->
+<form  id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+  {% for field in form.visible_fields %}
+    {% if field.name == "agree_to_terms" %}
+    <div class="d-flex mt-3">
+      {{field}}
+      <label for="{{ field.id_for_label }}" class="control-label mx-2">
+        {{ field.label }}
+        </label>
+    </div>
+        {% else %}
+        <label for="{{ field.id_for_label }}" class="control-label">
+          {{ field.label }}
+      </label>
+      {{field}}
+    {% endif %}
+    <!-- help text  -->
+      {% if field.help_text %}
+        <div class="form-help-txt">{{ field.help_text }}</div>
+      {% endif %}
+    <!-- field errors -->
+    {% for error in field.errors %}
+    <div class="flex items-center mt-2 mb-6">
+      <div class="">
+        {% for error_message in field.errors %}
+          <p class="errorlist">{{ error_message }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+{% endfor %}
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="flex justify-right">
+    <button type="submit" class="btn btn-success">{% trans "Sign Up" %} &raquo;</button>
+  </div>
+</form>
+<div id="term"></div>
+</div>
+
+{% endblock %}

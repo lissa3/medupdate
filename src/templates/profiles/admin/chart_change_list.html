@@ -1,0 +1,63 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static humanize tz %}
+
+{% block content_title %}
+    <h1> {% trans "Experiments Summary" %} </h1>
+    <h2> {% blocktrans %} Summary (by {{ period}}) {% endblocktrans %} </h2>
+{% endblock %}
+
+{% block result_list %}
+<table>
+    <thead>
+      <tr>
+          <th> <div class="text"> <a href="#">Profiles </a> </div> </th>
+          <th> <div class="text"> <a href="#">Total (in numbers) </a> </div> </th>
+          <th> <div class="text"> <a href="#">Sub total (in %) </a> </div> </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for row in summary %}
+        <tr class="{% cycle 'row1' 'row2' %}">
+            <td> {{ row.period }} </td>
+            <td> {{ row.sub_total }} </td>
+            <td> {{ row.sub_percent}} %</td>
+
+        </tr>
+        {% endfor %}
+        <tr style="font-weight:bold; border-top:2px solid #DDDDDD;">
+            <td> Total </td>
+            <td> {{total.total | default:0 }} </td>
+            <td> 100% </td>
+        </tr>
+    </tbody>
+</table>
+
+{% timezone 'UTC' %}
+<div class="results">
+    <div class="bar-chart">
+    {% for x in sum_over_time %}
+        {% if x.pct %}
+            <div class="bar" style="height:{{x.pct}}%">
+                <div class="bar-tooltip">
+                    {{x.sub_total }}<br>
+                    {{x.period | date:"d/m/Y "}}
+                </div>
+            </div>
+          {% else %}
+    <!--if event == 1, x.pct будет равен 0 (see view);
+        however  add some color  -->
+          <div class="bar" style="height:3%">
+            <div class="bar-tooltip">
+                {{x.sub_total }}<br>
+                {{x.period | date:"d/m/Y "}}
+            </div>
+          </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endtimezone %}
+
+{% endblock %}

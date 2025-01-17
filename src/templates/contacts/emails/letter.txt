@@ -1,0 +1,12 @@
+{% load i18n %}Greetings from MedSandbox
+Here is some fresh content on our site
+{% if letter %}
+Date {{ letter.added_at|date:"l, M. j, Y" }}
+{{letter.title}}
+{{ letter.text|linebreaksbr }}
+{% if posts %}{% for post in posts %}
+Post title: {{post.title_ru}}{% endfor%}
+{% endif %}{% endif %}
+Best regards,
+Medsandbox Team
+<a href="{{domain}}{% url 'contacts:end_news' uuid=uuid %}">Unsubscribe</a>

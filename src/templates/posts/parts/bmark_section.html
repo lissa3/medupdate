@@ -1,0 +1,10 @@
+{% load  i18n %}
+<form action="{% url 'posts:change_bookmark' action='add' %}" method="POST" id="bookmark">
+      {% csrf_token %}
+      <input type="hidden" name="post_uuid" value="{{post.uuid}}">
+      <input type="hidden" name = "profile_uuid"  value="{{user.profile.uuid}}">
+      <button class="btn btn-success" type="submit" id="toBookMark">
+        <span class="px-2"><svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="bookmark heart fill" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-bookmark-heart-fill b-icon bi"><g><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></g></svg>
+        </span>
+      </button>
+</form>

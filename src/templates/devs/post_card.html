@@ -1,0 +1,15 @@
+{% load static i18n %}
+<!-- short represention -->
+<div class="card m-5" style="width: 18rem;">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">created {{post.created_at|date:"F d, Y"}}</li>
+        <li class="list-group-item"><h3>{{post.title}}</h3></li>
+        <li class="list-group-item">updated {{post.updated_at|date:"F d, Y"}}</li>
+        <li class="list-group-item">status = {{post.get_status_display}}</li>
+        <li class="list-group-item"><strong>{% trans "category" %}: {{post.categ.name}}</strong></li>
+    </ul>
+    <div class="card-body">
+      {# <p class="card-text"> {{post.content|safe}}</p> #}
+      <a href="{% url 'devs:dev_detail_post' post.uuid %}"><button class="btn btn-primary">More details</button></a>
+    </div>
+</div>

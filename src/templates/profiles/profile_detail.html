@@ -1,0 +1,68 @@
+<!-- OK code without button remove img -->
+{% extends 'base.html' %}
+{% load static widget_tweaks i18n %}
+{% block head_title %}{% trans 'Profile' %}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="title-section">{% trans 'Welcome to your profile page' %}</h1>
+  {% if user.banned %}
+  <div class="row d-flex justify-content-between mt-2 ">
+    <div class="col-md-6 col-sm-12">
+      <div class="">
+        <h5 class="red">{% trans "Note from the moderators: " %}</h5>
+        <p>
+          {%  trans "You have been banned  for violating rules." %}
+          {% trans "You won't be able to comment till " %} {{profile.end_ban|date:"D d M Y"}} {% trans 'or longer' %}.
+        </p>
+    </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row d-flex justify-content-between">
+     <div class="col-md-6 col-sm-12 mt-2">
+      <div class="">
+        {% if profile.avatar %}
+          <img src="{{profile.avatar.url}}" alt="avatar" class="shape-img rounded-circle">
+          {% else %}
+              <img src="{% static 'images/myuser.svg' %}" class="shape-img" alt="avatar">
+          {% endif %}
+      </div>
+    <form action="{% url 'profiles:profile_detail' uuid=profile.uuid %}" id="upForm" enctype="multipart/form-data" method ="POST" class="mt-3 w-75">
+        {% csrf_token %}
+          {% if form.errors %}
+          <p class="red fs-6">{{form.errors}}</p>
+          {% endif %}
+          {% for field in form.visible_fields %}
+              {{field|add_class:'form-control p-3 border border-4 form-help-txt'|attr:"id:imgInp" }}
+              <label for="{{ avatar.id_for_label_tag }}" class="form-help-txt">{{ field.help_text }}</label>
+            <ul id="jsErr" class="errorlist visually-hidden"></ul>
+            <ul id="errDiv"></ul>
+            {% endfor %}
+          <button id="butSubmit" class="btn btn-success mt-3 disabled" type="submit">{% trans 'Save' %}</button>
+        </form>
+    </div>
+    <div class="col-md-6 col-sm-12 mt-2 d-md-flex d-md-flex justify-content-center" >
+      <div class="d-flex flex-column">
+        <a href="{% url 'account_set_password' %}" class="mb-3">
+          <button class="btn btn-dark" >{% trans 'Change password' %}</button>
+        </a>
+        <a href="{% url 'profiles:profile_delete' profile.uuid %}">
+          <button class="btn btn-warning" id="to_delete">
+            {% trans 'Delete profile' %}</button>
+        </a>
+
+      </div>
+    </div>
+  </div>
+  <hr>
+
+</div>
+{% endblock content %}
+{% block js %}
+
+{% endblock %}
+
+
+
+

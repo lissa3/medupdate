@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static i18n embed_video_tags %}
+
+{% block head_title %} Home | {{block.super}}{% endblock %}
+{% block content %}
+<div class="container">
+  <figure class="text-end">
+    <blockquote class="blockquote">
+      <span class="sm-font">
+        "Life is too short to worry about stupid things. Study, think,<br> create and grow. Teach yourself and teach others."
+      </span>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Prof. Feynman
+    </figcaption>
+  </figure>
+<h1 class="text-center">{% trans 'Sandbox for clinical problem solving' %}</h1>
+<div class="row flex-md-row-reverse">
+  <div class="col-md-6">
+    <picture>
+      <source srcset="{% static 'images/homepage/blood/blood_mobile.jpg' %}" media="(max-width: 599px")>
+      <source srcset="{% static 'images/homepage/blood/blood_mid.jpg' %}" media="(min-width: 600px)">
+      <img class="rounded w-100 img-thumbnail " src="{% static 'images/homepage/blood/blood.jpg' %}" alt="post-image-blood" />
+    </picture>
+ </div>
+  <div class="col-md-6 mt-2">
+    <div id="zoo">
+      {% trans "Этот сайт изначально он задумывался как описание интересных клинических случаев в вопросах и ответах, а также как площадка для обсуждения медицинских новинок в диагностике и лечении. <br>И это скорее всего и будет его основнм контентом. <br> Однако мне бы хотелось также ознакомить читателей с более универсальным  подходом в освоении материала. <br>Недостаточно изучать заболевание как изолированную форму патологии. Более эффективным является сопоставление его с другими болезнями, которые характеризуются схожими симптомами и механизмом действия." %}
+
+    </div>
+  </div>
+</div>
+<div class="mt-2">
+  <p>
+    {% trans "Краеугольным камнем в решении клинических проблем является перевод жалоб больного на язык медицинских терминов, системная обработка этих данных  техникой контрастного сопоставления и формированием диффернциального диагноза. В этом вам помогут некоторые" %} <a href="{% url 'core:illness_script' %}"  class="general"><strong>{% trans "инструменты и методы" %}</strong></a>.<br>{% trans "Сайт представляет лишь попытку рассматривать клинические случаи таким образом и не претендует на истину в последней инстанции, <br>а тем более на учебное пособие." %}
+  </p>
+</div>
+<!-- second block  -->
+
+<!-- end second block  -->
+  <!-- start video -->
+  {% if vidos %}
+  <div class="row mt-3 pt-3">
+    <div class="col col-md-6 col-sm-12">
+       {% video vidos.url "426x240" %}
+    </div>
+    <div class="col col-md-6 col-sm-12">
+      {% trans "На сайте спользовались материалы статей, подкастов и образовательных медицинских сайтов, указанных в <a href='/ru/general-info/acknowledgments/'><strong>Acknowledgments</strong></a>. " %}
+    </div>
+  </div>
+  {% else %}
+  <div class="col col-md-6 col-sm-12">
+    {% trans "На сайте спользовались материалы статей, подкастов и образовательных медицинских сайтов, указанных в <a href='/ru/general-info/acknowledgments/'><strong>Acknowledgments</strong></a>. " %}
+  </div>
+  {% endif %}
+
+</div>
+
+</div>
+{% endblock content %}
+{% block categs %}
+{% endblock categs %}
+

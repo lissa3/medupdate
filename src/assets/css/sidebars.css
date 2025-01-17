@@ -1,0 +1,103 @@
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 220px; /* Set the width of the sidebar */
+    z-index: 1; /* Stay on top */
+    top:10; /* Stay at the top */
+    left: 0;
+    background-color:#5e5451;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+
+  }
+  /* position: fixed;  */
+
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  /* Style page content */
+  .main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+  }
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  /* on smaller screens flex for archive items */
+  @media screen and (max-width: 600px) {
+    .archive{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .archive__item{
+      margin-right: 1rem;
+      margin-left: 0.5rem;
+    }
+  }
+/* right side bar */
+ /* calender */
+
+ .calend_item{
+  text-decoration: none;
+  color:black;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.calend_item:hover{
+  color: rgb(131, 53, 53);
+
+}
+.circle_num{
+  background: #a52e06;
+  color:white;
+  border-radius: 50%;
+  margin: 4px;
+  box-shadow:inset 0 5px 10px rgba(0,0,0,.8), 0 3px 6px rgba(0,0,0,.8);
+  /* display: block; */
+  transition: 0.5s;
+  width:25px;
+  height:25px;
+  line-height: 25px !important;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0 8px;
+}
+.circle_num_green{
+  background: #0d6c0d;
+  color:white;
+  border-radius: 50%;
+  margin: 4px;
+  box-shadow:inset 0 5px 10px rgba(0,0,0,.8), 0 3px 6px rgba(0,0,0,.8);
+  /* display: block; */
+  transition: 0.5s;
+  width:25px;
+  height:25px;
+  line-height: 25px !important;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0 8px;
+}
+.bg-outline{
+  color:#413838;
+  border: 1px solid rgb(131, 53, 53);
+}
+.header_right{
+  border: 1px solid #5a44448c;
+  border-radius: 5px;
+}

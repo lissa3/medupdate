@@ -1,0 +1,131 @@
+/* ************************
+    global search
+************************ */
+.search{
+    margin: .5rem 1rem 0;
+    text-align: right;
+}
+.search-inner{
+    /* border-bottom: 1px solid rgba(166,164,162,.5); */
+    display:flex;
+    max-width: 900px;
+    justify-content: flex-end;
+    padding:1rem 0;
+}
+.search-form{
+    display: flex;
+
+}
+/* div == input + a  */
+.search-box {
+    /* new abs */
+    /* position:relative;  */
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+    width:100%;
+    /* width:900px; */
+
+}
+/* input .search-txt width init 150px*/
+.search-txt {
+    background: #bbb3b3;
+    border: 1px solid rgba(237, 234, 230, 0.4);
+    border-radius: 15px;
+    outline: none;
+    float:left;
+    padding: 0 10px;
+    color:#000;
+    font-size: 20px;
+    /* transition:0.4s; */
+    line-height: 40px;
+    width:100%;
+    margin-right: .4rem;
+}
+/* .search-txt[type=text] {
+  -webkit-transition: background-color .35s ease-in-out;
+  transition: background-color .35s ease-in-out;
+  -webkit-transition:width .35s ease-in-out;
+  transition: width .35s ease-in-out;
+} */
+/* click 2 times! */
+/* .search-txt[type=text]:focus {
+  width: 200px;
+  background-color: rgba(255,255,255,0.6);
+  border-color:gray;
+} */
+
+.search-box:hover >.search-btn{
+    background: white;
+}
+.search-btn {
+    /* position:absolute; */
+    top:0;
+    left:300px;
+    float:right;
+    color:black;
+    text-decoration: none;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    background: #bbb3b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border:none;
+}
+
+/* idea:combine a link with button - button for search*/
+.custom-invisible {
+    background: transparent;
+    float:right;
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: transparent;
+}
+
+@media only screen and (min-width: 720px) {
+    .search-txt {
+        width:600px;
+
+    }
+}
+/*
+@media only screen and (min-width: 600px) {
+    .search-inner{
+        max-width: 900px;
+        justify-content:center;
+    }
+    .search-form{
+        width:600px;
+    }
+} */
+@media only screen and (max-width: 580px) {
+    .search-inner{
+        max-width: 550px;
+        justify-content:center;
+    }
+}
+/* ********** end global search *************** */
+/* start tag search  */
+.tag_item{
+    cursor: pointer;
+}
+
+/* end tags search  */
+/* start categ search  */
+.categ_item{
+    cursor: pointer;
+}
+.not-found{
+    background-color: #b1c3b28a;
+    border-radius: 10px;
+}
+/* end categs search  */

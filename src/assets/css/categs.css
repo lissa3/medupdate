@@ -1,0 +1,46 @@
+/* div left side bar  */
+.drop-top{
+  position: relative;
+}
+/* a tags in li (root-cats and children) */
+.node-name{
+padding-left: 4px;
+}
+.node-name a{
+  text-decoration: none;
+  color:inherit;
+  padding:3px;
+}
+/* all content categs: root-cats */
+.root-cats{
+  /* instead display: none for animation */
+  position: absolute;
+  top:0;
+  left: -999px;
+  opacity: 0;
+}
+.to-show{
+  position:static;
+  opacity: 1;
+  transition: all .5s ease-in-out;
+}
+/* recurs children */
+.children {
+  display: none;
+  list-style: inherit;
+}
+/* toggle children visabilty */
+.to-block{
+  /* display whole ul with children */
+  display: block;
+
+}
+
+.to-toggle:hover{
+ background-color: #a52e06;
+ color:white;
+ padding-left: 6px;
+ transition: all 0.5s ease-in-out;
+ font-family: inherit;
+ font-size: inherit;
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static i18n%}
+
+{% load widget_tweaks %}
+
+
+{% block head_title %} Home | {{block.super}}{% endblock %}
+{% block content %}
+<div class="container pt-2">
+    <!-- Contact -->
+    <main class="container">
+      <div class="">
+        <h4>{% trans 'Get in touch with us' %}</h4>
+        <div class="">
+
+        <form class="" id="feedback" action="#" method="POST">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+
+                {{ field|add_class:'control-label form-control border border-4' }}
+            <!-- ERRORS  -->
+
+                {% for error in field.errors %}
+                <div class="errorlist">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+          <input type="submit" value="Save" class="btn btn-success mt-2">
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock content %}

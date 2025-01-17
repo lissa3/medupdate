@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static tree_collections i18n calend %}
+{% block content %}
+<div class="row">
+  <div class="col col-md-3">placeholder 3 cols</div>
+  <div class="col-md-6 col-sm-12" id="post_list">
+    <div>Current status: <strong>{{post.get_status_display}}</strong></div>
+    <!-- if soft deleted:  -->
+    {% if post.is_deleted %}
+    <form action="{% url 'devs:change_state' action='remove_soft_del' %}" method="POST" >
+      {% csrf_token %}
+      <input type="hidden" value={{post.uuid}} name="uuid" />
+      <input type="hidden" value={{post.status}} name="current_state" />
+        <button  type="submit" class="btn btn-primary">
+          Remove soft deleted status
+        </button>
+      </form>
+
+    {% else %}
+    <!-- if not soft deleted: choice to change status -->
+      <div class="d-flex justify-content-between mt-3 mb-3">
+        <!-- status == 0 (drafts) -->
+        {% if post.status == 0 %}
+        <form action="{% url 'devs:change_state' action='status' %}" method="POST" id="toReview" >
+          {% csrf_token %}
+          <input type="hidden" value={{post.uuid}} name="uuid" />
+          <input type="hidden" value={{post.status}} name="current_state" />
+            <button  type="submit" class="btn btn-primary">
+                Uo to review
+            </button>
+          </form>
+        <!-- status == 1 (reviews) -->
+        {% else %}
+        <form action="{% url 'devs:change_state' action='status' %}" method="POST" id="toPublic">
+          {% csrf_token %}
+          <input type="hidden" value={{post.uuid}} name="uuid" />
+          <input type="hidden" value={{post.status}} name="current_state" />
+            <button  type="submit" class="btn btn-success">
+                Uo to public
+            </button>
+          </form>
+        {% endif %}
+        <form  method="POST" action="{% url 'devs:soft_delete_post' post.uuid %}"  id="softDelForm">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+                To soft deleted
+            </button>
+        </form>
+      </div>
+   {% endif %}
+  </div>
+</div>
+<div style="height: 50px;"></div>
+<div class="row">
+  <aside class="col-md-3 col-sm-12">
+    {% show_categs %}
+  </aside>
+ <!-- draft post  -->
+<div class="col-md-6 col-sm-12" id="post_list">
+  <div class="text-wrap single_post__title">{{post.title}}</div>
+    <p>{{post.published_at|date:"F d, Y"}}</p>
+    <div class="d-flex flex-wrap">
+      <div class="me-3">
+        <img src="{% static 'images/svgs/categs.svg' %}" alt="roadmap">
+      </div>
+      {% include "components/post_categs.html" with categ_dict=cats_path %}
+    </div>
+    {% if post.top_img %}
+    <img src="{{post.top_img.url}}" class="rounded w-50 img-thumbnail" alt="{{post.title}}">
+    {% endif %}
+    <div class="mt-3 single_post">
+        {{post.content|safe}}
+    </div>
+  <!--  if images - carousel -->
+
+  {% if post.pics %}
+  <hr>
+  <h6 class="text-center">Фото коллекция</h6>
+  <div class="d-flex justify-content-center">
+  <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for item in post.pics.all %}
+        {% if forloop.first %}
+          <div class="carousel-item active" data-bs-interval="100000">
+        {% else %}
+          <div class="carousel-item" data-bs-interval="100000">
+        {% endif %}
+          <a href='{{item.bron}}' target="_blank">
+            <h6 class="text-center">{{item.title}}</h6>
+            <img src="{{ item.pic.url }}" class="img-wh450 img-fluid img-thumbnail" alt='{{item.title}}'>
+          </a>
+        </div>
+      {% endfor %}
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden=""></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden=""></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div><!-- end carousel -->
+  </div>
+  </div>
+  {% endif%}
+
+</div>
+  <!-- end draft  -->
+<div class="col-md-3 col-sm-12">
+    {% show_archive %}
+    {% show_tags %}
+</div>
+</div>
+{% endblock%}
+

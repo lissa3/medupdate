@@ -1,0 +1,50 @@
+{% extends "account/base.html" %}
+{% load static i18n widget_tweaks %}
+
+{% block content %}
+<div class="container">
+<!-- form non field errors -->
+{% if form.non_field_errors %}
+  {% for error in form.non_field_errors %}
+      <div class="errorlist">
+          <strong>{{ error|escape }}</strong>
+      </div>
+  {% endfor %}
+{% endif %}
+<!-- end form non field errors  -->
+
+<!-- form  -->
+<form method="POST" action="{% url 'account_login' %}" >
+  {% csrf_token %}
+  {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+  {% endfor %}
+  {% for field in form.visible_fields %}
+    <label for="{{ field.id_for_label }}" class="fs-5">{{ field.label }}</label>
+    {% if not field.name == "remember"%}
+      {{ field|add_class:'form-control p-3 border border-4' }}
+    {% else %}
+      {% render_field form.remember widget="checkbox" %}
+    {% endif %}
+    <!-- spec field errors -->
+        {% for error in field.errors %}
+          <div class="flex items-center mt-2 mb-6">
+            {% for error_message in field.errors %}
+              <p class="errorlist">{{ error_message }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+  {% endfor %}
+  <!-- end form visible fields  -->
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="d-flex flex-col mt-4">
+    <button class="primaryAction btn btn-success me-3 fs-5" type="submit">{% trans "Sign In" %}</button>
+    <a class="button secondaryAction general" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+
+  </div>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+from django.apps import AppConfig
+
+
+class CommentsConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "src.comments"
+
+    def ready(self):
+        from src.comments import signals  # noqa

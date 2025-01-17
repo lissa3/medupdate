@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static  i18n tree_collections calend %}
+
+{% block content %}
+<div class="row d-flex justify-content-center dmb-lg-4 mb-sm-1 pe-sm-0">
+  <div class="col col-md-8 mb-2">
+  <div class="d-flex justify-content-center">
+    {% include "components/crumbs.html" %}
+  </div>
+  </div>
+</div>
+<div class="wrap ms-1">
+  <aside class="grid-categs">
+        {% show_categs %}
+  </aside>
+  <div class="grid-content mt-2" id="post_list">
+    {% if posts %}
+      {% for post in posts%}
+        {% include "posts/parts/single_post.html" %}
+      {% endfor %}
+        {% include "posts/parts/pagination.html" %}
+    {% else %}
+      <div id="not-found" class="not-found p-2">
+        {% trans "Sorry. Nothing found for your search" %}
+      </div>
+    {% include "posts/parts/search_errors.html" %}
+    {% endif %}
+  </div>
+  <div class="grid-archive">
+    {% show_archive %}
+  </div>
+  <div class="grid-tags">
+    {% show_tags %}
+  </div>
+</div>
+{% endblock%}
+{% block js %}
+
+{% endblock %}

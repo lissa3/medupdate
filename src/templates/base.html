@@ -1,0 +1,109 @@
+{% load static i18n search_form django_htmx %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}SandBox{% endblock %}</title>
+    <meta name="keywords" content="obesity,endocrinology,diabetes, glp-2, ozempic, antibody">
+    <link rel="apple-touch-icon" sizes="192x192" href="{% static 'images/ico/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/ico/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/ico/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/ico/site.manifest' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/extra.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"><!-- small icons -->
+
+
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% include "components/menu.html" %}
+
+<!-- class wrap to fix footer  -->
+<div class="wraps">
+    <section class="container-xxl">
+      {% block msg %}
+        {% if messages %}
+        <div class="container" id="msg-box">
+          <div class="m-2">
+            <ul class="p-2" >
+              {% for msg in messages %}
+                {% if msg.tags == 'success' %}
+                <div class="green custom-slide" hx-get="{% url 'clear' %}" hx-trigger="load delay:3s">{{ msg }}</div>
+                {% elif msg.tags == 'error' %}
+                <div class="errorlist" >{{ msg }}</div>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      {% endblock msg %}
+    <!-- search form  -->
+      <div class="container mb-lg-4 mb-sm-1 pe-sm-0">
+        {% show_search_form %}
+      </div>
+    </section>
+    <main>
+    <!-- <main class="container">     -->
+      {% block content %}
+      {% endblock %}
+    </main>
+    <footer class="container px-4 px-sm-5 pt-5 mb-2 pb-3">
+      <div class="row d-flex justify-content-around mb-2">
+        <div class="col-6 text-center">
+          <a href="{% url 'core:thanks' %}">
+            <button type="button" class="w-60 btn btn-outline rounded-pill custom-font px-3 ">
+              {% trans 'Acknowledgments' %}
+            </button>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+          <a href="{% url 'core:about' %}">
+            <button type="button" class="w-60 btn btn-outline rounded-pill custom-font px-3 ">
+              {% trans 'About' %}
+            </button>
+            </a>
+        </div>
+      </div>
+    </footer>
+
+</div>
+{% block categs %}
+{% endblock categs %}
+<!-- button to TOP -->
+<button  id="toTop" title="Go to top" style="display: block;">{% trans "Go Top" %}</button>
+<!-- modal should be above scripts -->
+<div id="modal" class="modal fade">
+  <div id="dialog" class="modal-dialog" hx-target="this"></div>
+</div>
+<script defer src="{% static 'bund/app.bundle.js' defer %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% django_htmx_script %}
+<script src="https://unpkg.com/htmx.org@1.6.0"></script>
+<script>
+  const modal = new bootstrap.Modal(document.getElementById("modal"));
+  htmx.on("htmx:afterSwap", (e) => {
+    // Response targeting #dialog => show the modal
+    if (e.detail.target.id == "dialog") {
+      modal.show()
+    }
+  })
+  htmx.on("htmx:beforeSwap", (e) => {
+  // Empty response targeting #dialog => hide the modal
+  if (e.detail.target.id == "dialog" && !e.detail.xhr.response) {
+    modal.hide()
+    e.detail.shouldSwap = false
+  }
+})
+// form with errors->cancel-> open again(form + err should flush)
+  htmx.on("hidden.bs.modal", () => {
+    document.getElementById("dialog").innerHTML = ""
+  })
+  </script>
+  {% block js %}
+  {% endblock %}
+</body>
+</html>

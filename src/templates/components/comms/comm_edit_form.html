@@ -1,0 +1,27 @@
+{% load widget_tweaks  i18n %}
+<form hx-put="{% url 'comments:handle_edit' post_uuid comm_id %}" class="modal-content">
+    {% csrf_token %}
+    <div class="modal-header">
+      <h5 class="modal-title">{% trans "Edit your comment" %}</h5>
+    </div>
+    <div class="modal-body">
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+      {% for field in form.visible_fields %}
+      <div class="form-group">
+          <label for="{{ field.id_for_label }}" class="control-label">{{ field.label }}</label>
+          {{ field|add_class:'control-label form-control border border-4' }}
+      <!-- ERRORS  -->
+
+          {% for error in field.errors %}
+          <div class="errorlist">{{ error }}</div>
+          {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
+      <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+    </div>
+  </form>

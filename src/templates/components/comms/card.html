@@ -1,0 +1,50 @@
+{% load static i18n %}
+<div class="card mb-2 ps-1">
+    <div class="card-header">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-md-center writer">
+          <div class="me-2">
+            {% if node.user.profile.avatar %}
+            <img src="{{node.user.profile.avatar.url}}" alt="avatar" class="shape-img-comms rounded-circle">
+            {% else %}
+            <img src="{% static 'images/svgs/user_pic.svg' %}" alt="avatar"
+            >
+            {% endif %}
+          </div>
+          <div class=""># <strong>{{node.user}}</strong>
+            {% if node.reply_to %}&#8594; {{node.reply_to}}{% endif %}
+          </div>
+        </div>
+        {% if user.is_authenticated and not user.banned and node.user == user %}
+        <div class="d-flex w-20 ms-1 ">
+          <div class="tool-frame me-2"
+          hx-get="{% url 'comments:handle_edit' post.uuid node.id %}"
+              hx-target="#dialog">
+              <img  src="{% static 'images/svgs/pen.svg' %}" alt="edit-pen">
+          </div>
+          <div class="tool-frame ms-2"
+            hx-get="{% url 'comments:handle_delete' post.uuid node.id %}"
+            hx-target="#dialog">
+            <img src="{% static 'images/svgs/trash.svg' %}" alt="delete-trash">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="date-comment">
+      {% if node.mark_edited %}
+      <div class="mt-2">{% trans 'Edited' %}: {{node.updated_at}}</div>
+      {% else %}
+      <div class="mt-2">{% trans 'Date' %}: {{node.updated_at}}</div>
+      {% endif %}
+    </div>
+      <p class="card-text">{{node.body}}</p>
+      {% if user.is_authenticated and not user.banned %}
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary mb-1 me-1" hx-get="{% url 'comments:add_comm' post.uuid node.id %}"
+        hx-target="#dialog"
+        >{% trans 'Reply' %}
+        </button>
+      </div>
+      {% endif %}
+</div>

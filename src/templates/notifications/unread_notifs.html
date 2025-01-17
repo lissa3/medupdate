@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static  i18n  %}
+
+{% block content %}
+<div class="wrap ms-1">
+  <aside class="grid-categs">
+  </aside>
+  <div class="grid-content mt-2">
+    <h4>Notifications</h4>
+    {% if user_notifications %}
+    <button class="btn btn-primary mb-2"
+      hx-post="{% url 'notifications:mark_read' %}">
+      {% trans 'Mark all as read' %}
+      </button>
+      {% for n in user_notifications %}
+      <div class="d-flex flex-column border-bottom border-secondary border-1">
+        <div class="small-notif ">{{n.text|safe|linebreaks}}</div>
+        <div class="d-flex justify-content-end">
+            <a href="{% url 'posts:get_branch'  slug=n.post.slug thread_uuid=n.parent_comment.uuid%}">
+                <button class="btn btn-outline">{% trans 'Подробнее' %}</button>
+            </a>
+
+        </div>
+      </div>
+    {% endfor %}
+    {% else %}
+    <p>{% trans 'Сообщений нет' %}</p>
+    {% endif %}
+  </div>
+  <div class="grid-archive">
+  </div>
+  <div class="grid-tags">
+  </div>
+</div>
+{% endblock%}
+
+

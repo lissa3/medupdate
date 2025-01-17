@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block head_title %} news letter | {{block.super}}{% endblock %}
+{% block content %}
+  <main class="container">
+  <div class="d-flex flex-column justify-content-center">
+    <h3>{% trans "Do you really wish to unsubscribe from the newsletter?" %}</h3>
+    <div class="d-flex">
+      <button  class="btn btn-warning"
+        hx-post="{% url 'contacts:end_news' uuid=uuid %}"
+        >
+        {% trans "Unsubscribe" %}
+      </button>
+
+    </div>
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,28 @@
+.bell{
+    background-color:#e5e9ed6e ;
+    border-radius: 8px;
+    display: flex;
+}
+.small-notif{
+    font-size: 14px;
+}
+.dropdown-menu{
+    max-height: 280px;
+    overflow-y: auto;
+}
+/* lg-screens */
+@media screen and (min-width: 600px){
+    .notif_container{
+        min-width: 500px;
+        border-radius: 10px;
+        background-color:#d9ddde;
+        padding: 1em;
+    }
+    #notis.dropdown-menu{
+        background-color:#e5f0ec;
+    }
+    .dropdown-menu{
+        max-height: 600px;
+        overflow-y: auto;
+    }
+}

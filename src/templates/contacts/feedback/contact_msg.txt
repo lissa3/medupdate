@@ -1,0 +1,9 @@
+User: {{user}}
+
+This is what they wrote:
+Subject: {{subject}}
+Message: {{message}}
+
+Relpy to this email:
+
+{{email}}
