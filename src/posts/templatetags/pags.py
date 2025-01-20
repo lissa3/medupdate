@@ -12,6 +12,6 @@ def pags_htmx(tag=None, slug=None, page_obj=None, request=None, year=None, month
     if slug:
         ctx.update({"slug": slug})
     if year and month:
-        {ctx.update({"year": year, "month": month})}
+        ctx.update({"year": year, "month": month})
 
     return ctx
