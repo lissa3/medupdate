@@ -111,9 +111,11 @@ class ProfileChartAdmin(admin.ModelAdmin):
             {
                 "period": x["period"],
                 "sub_total": x["sub_total"] or 0,
-                "pct": ((x["sub_total"] or 0) - low) / (high - low) * 100
-                if high > low
-                else 0,
+                "pct": (
+                    ((x["sub_total"] or 0) - low) / (high - low) * 100
+                    if high > low
+                    else 0
+                ),
             }
             for x in calc_qs
         ]

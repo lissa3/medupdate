@@ -22,3 +22,4 @@ static
 deploy.py
 reqs/req.in
 reqs/req.txt
+docs

@@ -1,6 +1,7 @@
 """
 django 4.2.1
 """
+
 import os
 from pathlib import Path
 
@@ -28,9 +29,9 @@ env = environ.Env(
     SENTRY_ENABLED=(bool, True),
     SENDGRID_API_KEY=(str, ""),
     SESSION_COOKIE_SECURE=(bool, True),
-    AWS_ACCESS_KEY_ID = (str,""),
-    AWS_SECRET_ACCESS_KEY = (str,""),
-    AWS_STORAGE_BUCKET_NAME = (str,"") ,
+    AWS_ACCESS_KEY_ID=(str, ""),
+    AWS_SECRET_ACCESS_KEY=(str, ""),
+    AWS_STORAGE_BUCKET_NAME=(str, ""),
 )
 environ.Env.read_env(BASE_DIR / ".env")
 DEBUG = True
