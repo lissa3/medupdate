@@ -17,6 +17,9 @@
           {% for post in posts %}
             <a href="{{domain}}{% url 'posts:post_detail' post.slug %}">{{post.title}}</a>
         </p>
+            {% if post.url_top_img %}
+              <img src="{{post.url_top_img}}" alt="{{post.title}}">
+            {% endif %}
           {% endfor%}
         {% endif %}
       {% endif %}
