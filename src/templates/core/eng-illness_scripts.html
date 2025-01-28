@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block head_title %} Intro | {{block.super}}{% endblock %}
+
+{% block content %}
+<div class="row mx-1">
+  <div class="col-md-9 mx-auto">
+    <h4 class="text-center">Illness script</h4>
+  <div class="mt-2">
+  <div class="d-flex custom-flex-small">
+      <div class="">
+        <div>
+          The patient does not come to the doctor with a diagnosis but with complaints.<br>
+          We have to compare these with our book knowledge and come up with a further diagnosis and treatment plan.<br>
+          But this is where the ambush can lurk.<br>
+          Medical textbooks are organized in such a way that each disease exists as an abstraction that lives its own ideal life.<br>
+          Remember how disease information is usually presented there.
+      <p class="">It is usually so-called horizontal reading.
+        <p>
+          <i>
+            Etiology  &#x2192; Epidemiology  &#x2192; Pathophysiology &#x2192; Clinical Features  &#x2192; Diff ds  &#x2192; ect
+          </i>
+        </p>
+      </p>
+        </div>
+      </div>
+      <div>
+        <img class="py-2 me-3  border-dark" src="{% static 'images/homepage/pngs/eng-reader-full.png' %}" alt="books">
+      </div>
+  </div>
+    <div>
+      This is a necessary but insufficient way to learn new material.
+    </div>
+    <p>
+      Over time, the amount of reading will increase tremendously, and human memory is unfortunately limited. Under stressful clinical conditions we will have to scramble to remember what a particular patients symptoms look like.
+    </p>
+  </div>
+  <div class="">
+    At some point, experts and cognitive psychologists began to study the problem of how a doctor in training could organize and arrange information so that the "right" section could be quickly found in memory when needed.
+  </div>
+  <div class="">
+    <p>
+      That's how the concepts of <span class="">illness script</span> and  <span class=""> patient script </span> have been created.
+    </p>
+  </div>
+  <div class="">
+      <div class="text-center mb-2">
+          <strong>What is an illness script? </strong>
+      </div>
+  </div>
+  <div class="d-flex justify-content-between custom-flex-small px-2 mb-2">
+    <div>
+      <img class="image-resize250" src="{% static 'images/homepage/pngs/eng-illness600.png' %}" alt="contrast-compaire" >
+    </div>
+    <!-- <div class="d-flex align-content-center justify-content-center">       -->
+    <div class="">
+      <p>
+        <span><strong>Illness script</strong></span> is the result of the processing of our book knowledge gained through horizontal reading.
+      </p>
+      <p>
+        As you gain clinical experience, new features and benefits will be added to the illness script.
+      </p>
+      <p>
+      But for now, we are at the very beginning of the journey.
+      Let's try to filter the information so that we can extract only what is relevant to the four sections: Epidemiology, Time Course, Classic Clinical Features, Pathophysiology.</p>
+    </div>
+  </div>
+  <div>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+           Epidemiology
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <span class="tools_top to-underline">"Who commonly gets this disease"?</span> It includes:
+          <ul>
+            <li class="">Age</li>
+            <li class="">Gender</li>
+            <li class="">Environmental factors </li>
+            <ul>
+              <li class="">Living conditions</li>
+              <li class="">Travelling</li>
+              <li class="">Hobby</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Time course
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <ul class="accordion-body">
+              <ul class="">
+                <strong>How long has it been going on and what happens in between?</strong>
+                <li>Hyperacute (hours) </li>
+                <li>Acute (days)</li>
+                <li>Subactute (weeks)</li>
+                <li>Chronic</li>
+              </ul>
+              <ul class="">
+                <strong>Patern of symptoms</strong>
+                <li>Constant</li>
+                <li>Episodic</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Typical clinical presentation
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <p >What are the classic signs or symptoms? What might you find on history and physical exam?</p>
+            <div>Important terms here are: <span class="to-underline">Key and Differentiating</span> features, <span class="to-underline">Must Have</span> features and <span class="to-underline">Rejecting</span> features.</div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+            Pathophysiology
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <strong>What causes the disease?</strong> <br>Anatomy, physiology, immunological,biochemical pathways,genetics, ect <br>
+            <strong>What are the known environmental contributors?</strong> <br>
+            Microbiology,Toxins,Pharmacology
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end -->
+  <div class="mt-4 text-center mb-3">
+    <p>
+      Now it's time to answer the following question:
+    </p>
+      <div class=" to-underline">
+        <strong>Why do we need to store information in illness scripts&nbsp;?</strong>
+      </div>
+  </div>
+  <div class="">
+    As mentioned above, a patient comes to the doctor with complaints that we often intuitively label with a collective term or leading syndrome. For example: complaints of headache, complaints of hemoptysis or chest pain.
+  </div>
+  <div class="">
+    Now that our knowledge is packaged in "illness scripts", we can go from horizontal reading to the vertical one using syndome driven clincal presentation diagnostic triads.
+    It gets easier for us to connect them with logical links based on the patient's chief complaint.
+  </div>
+  <div class="">
+    These are no longer unconnected patterns but a network of patterns organized under the umbrella of the leading syndrome. This is how an experienced physician stores information in his memory.
+  </div>
+  <div class="mt-2 text-center mb-2">
+      <div class="">
+          <strong>What can help us to create logical connections inside the network&nbsp;?</strong>
+      </div>
+  </div>
+  <div class="">
+    The following terms will help to answer this question:
+    <ul class="">
+      <li class="mt-2"><span class="to-underline">Key or Differentiating features</span> allow one to distinguish between diseases that may present with the same syndrome.
+        <p>Key feature of the diagnostic triad should be found only in one of the conditions and not in the other. </p>
+        <div>
+          Differentiating features are common to only two of the diagnosis
+        </div>
+      </li>
+      <li>
+        <span class=" to-underline">Must-have features</span> Without it, <span class="tools_top"> the disease</span> can't be diagnosed.
+      </li>
+      <li>
+        <span class=" to-underline">Rejecting Feature</span>. If present, <span class="tools_top">the diagnosis</span> can't be made.
+        <p>For example, active reflexes are incompatible with a diagnosis of Guillian Barre Syndrome.</p>
+      </li>
+    </ul>
+  </div>
+  <div class="">
+    <p>
+       Let's look at the following diagram.
+    </p>
+    <p>
+      At the beginning of contrast learning let's start with three diseases with similar presentation. Two will be too little, more then three - too difficult. Expending the list begins to be hard to identify key features.
+    </p>
+    <p>Organizing syndromes can be clinical or lab based.Just to remind you that we are talking about classic signs and symptoms.</p>
+    <p>
+     <div>
+  <div class="d-md-flex">
+     <div class="">
+      <div class="w-80">
+        <ul class="">
+          <p class="to-underline">Patient with acute onset of headache</p>
+          <p>
+            List of our diff ds may consist of migraine, meningitis and intracranial bleeding. Let's try to compare theses diseases using terms above.
+          </p>
+          <li>
+            Vomiting signed as <strong>&#x2055;</strong> is located at the center of the diagram. It's common in all three diseases. So it's <strong>not</strong> a differentiating feature.
+          </li>
+          <li>
+           Meningitis and intracerebral bleed may present with  confusion and/or neck stiffness. This symptom is not present in migraine. This feature is common to only two of the diagnosis so we can called it <strong>differentiating</strong>.
+          </li>
+          <li>
+            <strong>Key feature</strong> of meningitis  will be fever
+          <li>
+            <strong>Rejecting</strong> feature in meningitis will be normal spinal fluid (although there are some exceptions)
+          </li>
+        </ul>
+      </div>
+      <div class="">
+      </div>
+      </div>
+     <div class="circles-diagram d-flex  justify-content-center flex-column">
+        <img src="{% static 'images/homepage/pngs/eng-three-illness.png' %}" alt="illness-scripts-diagram">
+      </div>
+  </div>
+  <div class="d-md-flex">
+     <div class="">
+      <div>
+        <p>
+          The following example illustrates contrast approach as a table.
+          Let's compare each set of elements of the illness-scripts which can help us to build a framework  to store information for the future. Again we can use key features that should be a core element of these disease illness-scripts.
+       </p>
+         <ul>
+          <p class="to-underline">
+            Patient with hemoptysis
+          </p>
+          <p>
+           Lets identify three diseases that might present with this syndrome. For example: Lung cancer, Goodpasture syndrome and Granulomatosis with polyangitis for the sake of illustration.
+          </p>
+              <strong>Key features</strong>
+              <li>
+                <p>Massive hemoptysis is common in Goodpasture's syndome but <strong>not</strong> for other diseases in the triad. Let's mark it as *** in the column Symptoms</p>
+              </li>
+              <li>
+                <p>Strong smoking history is a key feature of epidemology in many forms of Lung cancer but it's not a common feature of Goodpasture's syndrome or  Granulomatosis with polyangitis
+                So let's mark it as a Key feature in the table column Epidemiology.
+                </p>
+              </li>
+            </ul>
+            <ul>
+              <strong>Differentiating feature</strong> in this triad is hematuria
+              <li>
+                <p>Goodpasture's Sd and Granulomatosis with polyangitis present with glomerulonephritis but not Lung cancer. Let's put it as a differentiating feature in the column "Diff ds tests"</p>
+              </li>
+            </ul>
+            <table class="table table-striped overflow-hidden">
+              <thead>
+                <tr>
+                  <th scope="col">Disease</th>
+                  <th>Epidemiology</th>
+                  <th>Symptoms</th>
+                  <th>Diff dx tests</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lung cancer</td>
+                  <td>Smoking***</td>
+                  <td></td>
+                  <td>No hematuria</td>
+                </tr>
+                <tr>
+                  <td>Goodpasture's syndrome</td>
+                  <td></td>
+                  <td>Hemoptysis***</td>
+                  <td>Hematuria +</td>
+                </tr>
+                <tr>
+                  <td>Granulomatosis with polyangitis</td>
+                  <td></td>
+                  <td></td>
+                  <td>Hematuria +</td>
+                </tr>
+              </tbody>
+            </table>
+            <div>Try to fill this table in. You shouldn't put too much information in one square unless it's either a key or a differentiating feature!</div>
+            <div> It's a quality of the facts to help you to distinguish between diseases with this given syndrome. </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="mt-2 text-center mb-2">
+
+    <div class="to-underline">
+      <span><img src="/static/images/homepage/svgs/plus.svg" alt="minus-sign">&nbsp;What advantages does this approach have&nbsp;?
+        </span>
+
+    </div>
+</div>
+<div class="">
+  Illness scripts help us to get rid of informational noise and facilitate the compare-and-contrast neural network connections. Storing information this way will allow us to recall it more efficiently in the clinical environment.
+
+</div>
+  <div class="mt-4 text-center mb-3">
+    <div class=" to-underline">
+        <span><img src="/static/images/homepage/svgs/minus.svg" alt="minus-sign">&nbsp;What are the disadvantages of this approach&nbsp;?</span>
+    </div>
+</div>
+<div class="">
+  If patient presents with atypical symptoms we can miss the right diagnosis.
+</div>
+<div class="mt-2">
+  <div class="">
+    Now it's time to learn some <a href="{% url 'core:problem_present' %}" ><strong>methods</strong></a> to proccess history and results of physical exam.
+
+   </div>
+ </div>
+ </div>
+</div>
+
+{% endblock %}
+
+

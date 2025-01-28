@@ -82,3 +82,7 @@ def get_temp_img_bytes():
     img.save(_file, format="JPEG")
     _bytes = _file.getvalue()
     return _bytes
+
+
+def parse_path(request):
+    return request.path_info.strip("/").split("/")[0]
